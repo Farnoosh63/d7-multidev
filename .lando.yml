@@ -1,0 +1,6 @@
+name: d7-ci-multidev
+recipe: pantheon
+config:
+  framework: drupal
+  site: d7-ci-multidev
+  id: 128845f8-f5c8-469a-bf10-2b84c5039056
