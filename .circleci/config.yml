@@ -37,7 +37,7 @@ jobs:
   # containing the compiled css for reuse in the pantheon/push job.
   npmbuild_and_persist:
     docker:
-    - image: node:6.10
+    - image: urbaninstitute/lando-urban
     steps:
     - checkout
     - run:
