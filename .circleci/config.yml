@@ -3,22 +3,54 @@ workflows:
   version: 2
   compile_sass_and_push:
     jobs:
-      - npmbuild
-      - pantheon/push:
-          requires:
-            - npmbuild
-          checkout: false
-          pre-steps:
-            - checkout
+    - npmbuild_and_persist
+    - pantheon/push:
+        # This "requires" section tells CircleCI the order in which
+        # jobs must be run.
+        requires:
+          - npmbuild_and_persist
+        # Because the checkout command is called from pre-steps, it should
+        # not be run inside the orb-defined steps.
+        checkout: false
+        # Commands to run before the orb-defined steps.
+        pre-steps:
+          # Perform a git checkout of the code from GitHub/Bitbucket so that
+          # custom commands (the rm below) can alter the code before it is
+          # pushed to Pantheon.
+          - checkout
+          # Attach this dist directory created in npmbuild_and_persist
+          # which contains the compiled css.
+          - attach_workspace:
+              at: .
+          # The dist directory that holds the compiled Sass is git ignored.
+          # It needs to be committed on Pantheon.
+          # Removing this .gitignore file makes it available for committing.
+          # Pantheon's Composer examples use a more complicated
+          # technique of "cutting" the top level .gitignore
+          # file so that lines specifying build artifact directories are removed.
+          # https://github.com/pantheon-systems/example-drops-8-composer/blob/670ae310c601dabbb7b35411ff3e08e4b1fac7a3/composer.json#L67
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
 jobs:
-  npmbuild:
+  # This job compiles Sass and then saves (persists) the directory
+  # containing the compiled css for reuse in the pantheon/push job.
+  npmbuild_and_persist:
     docker:
-      - image: 'node:10.15.3'
+    - image: node:6.10
     steps:
-      - checkout
-      - run:
-          name: install npm dependencies in Urban
-          command: cd web/sites/all/themes/urban && npm install
+    - checkout
+    - run:
+        name: Installing ruby and Set ruby version to 2.3.4
+        # command: cd web/sites/all/themes/urban && gem install bundler && bundle install
+        command: |
+                  cd web/sites/all/themes/urban
+                  rvm install 2.4.6
+                  echo . $(rvm 2.4.6 do rvm env --path) >> $BASH_ENV
+    - run:
+        name: install npm dependencies in Urban theme
+        command: cd web/sites/all/themes/urban && npm install
+    - persist_to_workspace:
+        root: .
+        paths:
+        - eb/sites/all/themes/urban
