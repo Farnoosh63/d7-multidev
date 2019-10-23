@@ -37,12 +37,11 @@ jobs:
   # containing the compiled css for reuse in the pantheon/push job.
   npmbuild_and_persist:
     docker:
-      - image: circleci/ruby:2.4.6
-      - image: node:6.10
+      - image: circleci/ruby:2.4-node
     steps:
     - checkout
     - run:
-        name: Installing ruby and Set ruby version to 2.3.4
+        name: Installing bundler 1.17.3 and gem dependencies (defined in Gemfile)
         # command: cd web/sites/all/themes/urban && gem install bundler && bundle install
         command: |
                   cd web/sites/all/themes/urban
