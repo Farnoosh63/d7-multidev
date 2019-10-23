@@ -38,6 +38,7 @@ jobs:
   npmbuild_and_persist:
     docker:
       - image: circleci/ruby:2.4.6
+      - image: node:6.10
     steps:
     - checkout
     - run:
@@ -45,8 +46,8 @@ jobs:
         # command: cd web/sites/all/themes/urban && gem install bundler && bundle install
         command: |
                   cd web/sites/all/themes/urban
-                  rvm install 2.4.6
-                  echo . $(rvm 2.4.6 do rvm env --path) >> $BASH_ENV
+                  gem install bundler
+                  bundle install
     - run:
         name: install npm dependencies in Urban theme
         command: cd web/sites/all/themes/urban && npm install
