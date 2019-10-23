@@ -12,7 +12,7 @@ workflows:
             - checkout
 
 orbs:
-  pantheon: pantheon-systems/pantheon@0.1.1
+  pantheon: pantheon-systems/pantheon@0.1.0
 jobs:
   npmbuild:
     docker:
