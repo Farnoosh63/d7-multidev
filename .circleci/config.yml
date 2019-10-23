@@ -8,58 +8,51 @@ workflows:
         # This "requires" section tells CircleCI the order in which
         # jobs must be run.
         requires:
-          - npmbuild_and_persist
+          - installing_ruby
+          - installing_node
+          - installing_repo
         # Because the checkout command is called from pre-steps, it should
         # not be run inside the orb-defined steps.
         checkout: false
         # Commands to run before the orb-defined steps.
         pre-steps:
-          # Perform a git checkout of the code from GitHub/Bitbucket so that
-          # custom commands (the rm below) can alter the code before it is
-          # pushed to Pantheon.
           - checkout
-          # Attach this dist directory created in npmbuild_and_persist
-          # which contains the compiled css.
           - attach_workspace:
               at: .
-          # The dist directory that holds the compiled Sass is git ignored.
-          # It needs to be committed on Pantheon.
-          # Removing this .gitignore file makes it available for committing.
-          # Pantheon's Composer examples use a more complicated
-          # technique of "cutting" the top level .gitignore
-          # file so that lines specifying build artifact directories are removed.
-          # https://github.com/pantheon-systems/example-drops-8-composer/blob/670ae310c601dabbb7b35411ff3e08e4b1fac7a3/composer.json#L67
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
 jobs:
   # This job compiles Sass and then saves (persists) the directory
   # containing the compiled css for reuse in the pantheon/push job.
-  npmbuild_and_persist:
+  installing_ruby:
     docker:
-      - image: circleci/ruby:2.4-node
+      - image: circleci/ruby:2.4.6
     steps:
     - checkout
     - run:
         name: Installing bundler 1.17.3 and gem dependencies (defined in Gemfile)
-        # command: cd web/sites/all/themes/urban && gem install bundler && bundle install
         command: |
                   cd web/sites/all/themes/urban
                   gem install bundler
                   bundle install
-    - run:
-        name: install npm dependencies in Urban theme
-        command: cd web/sites/all/themes/urban && npm install
-    - run:
-        name: install third party repository
-        command: |
-                  cd web/sites/all/modules
-                  rm -rf urban_cmis_core
-                  git clone git@github.com:UI-Research/urban_cmis_core.git
-                  cd urban_cmis_core
-                  git fetch --all
-                  git pull origin master
-    - persist_to_workspace:
-        root: .
-        paths:
-        - web/sites/all/themes/urban
+  installing_node:
+    docker:
+      - image: node:6.10
+      steps:
+        - checkout
+        - run:
+            name: install npm dependencies in Urban theme
+            command: cd web/sites/all/themes/urban && npm install
+  installing_repo:
+    steps:
+      -checkout
+      - run:
+          name: install third party repository
+          command: |
+                    cd web/sites/all/modules
+                    rm -rf urban_cmis_core
+                    git clone git@github.com:UI-Research/urban_cmis_core.git
+                    cd urban_cmis_core
+                    git fetch --all
+                    git pull origin master
