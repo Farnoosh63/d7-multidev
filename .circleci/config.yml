@@ -1,8 +1,24 @@
 version: 2.1
 workflows:
   version: 2
-  just_push:
-      jobs:
-      - pantheon/push
+  compile_sass_and_push:
+    jobs:
+      - npmbuild
+      - pantheon/push:
+          requires:
+            - npmbuild
+          checkout: false
+          pre-steps:
+            - checkout
+
 orbs:
-  pantheon: pantheon-systems/pantheon@0.1.0
+  pantheon: pantheon-systems/pantheon@0.1.1
+jobs:
+  npmbuild:
+    docker:
+      - image: 'node:10.15.3'
+    steps:
+      - checkout
+      - run:
+          name: install npm dependencies in Urban
+          command: cd web/sites/all/themes/urban && npm install
