@@ -37,7 +37,7 @@ jobs:
   # containing the compiled css for reuse in the pantheon/push job.
   npmbuild_and_persist:
     docker:
-      - image: mapopa/rvm-ruby-dependencies
+      - image: circleci/ruby:2.4.6
     steps:
     - checkout
     - run:
