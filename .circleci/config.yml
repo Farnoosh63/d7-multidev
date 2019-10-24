@@ -39,20 +39,20 @@ jobs:
   installing_node:
     docker:
       - image: node:6.10
-      steps:
-        - checkout
-        - run:
-            name: install npm dependencies in Urban theme
-            command: cd web/sites/all/themes/urban && npm install
+    steps:
+    - checkout
+    - run:
+        name: install npm dependencies in Urban theme
+        command: cd web/sites/all/themes/urban && npm install
   installing_repo:
     steps:
-      -checkout
-      - run:
-          name: install third party repository
-          command: |
-                    cd web/sites/all/modules
-                    rm -rf urban_cmis_core
-                    git clone git@github.com:UI-Research/urban_cmis_core.git
-                    cd urban_cmis_core
-                    git fetch --all
-                    git pull origin master
+    -checkout
+    - run:
+        name: install third party repository
+        command: |
+                  cd web/sites/all/modules
+                  rm -rf urban_cmis_core
+                  git clone git@github.com:UI-Research/urban_cmis_core.git
+                  cd urban_cmis_core
+                  git fetch --all
+                  git pull origin master
