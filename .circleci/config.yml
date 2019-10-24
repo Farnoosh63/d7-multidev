@@ -30,7 +30,7 @@ jobs:
     steps:
     - checkout
     - run:
-        name: Installing bundler 1.17.3 and gem dependencies (defined in Gemfile)
+        name: Installing bundler and gem dependencies (defined in Gemfile)
         # command: cd web/sites/all/themes/urban && gem install bundler && bundle install
         command: |
                   cd web/sites/all/themes/urban
