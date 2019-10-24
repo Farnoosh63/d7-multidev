@@ -15,7 +15,7 @@ workflows:
         # not be run inside the orb-defined steps.
         checkout: false
         # Commands to run before the orb-defined steps.
-        pre-steps:
+        post-steps:
           - checkout
           - attach_workspace:
               at: .
