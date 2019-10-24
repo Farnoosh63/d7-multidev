@@ -1,9 +1,8 @@
 version: 2.1
 workflows:
   version: 2
-  compile_sass_and_push:
+  build_and_push:
     jobs:
-    - npmbuild_and_persist
     - pantheon/push:
         # This "requires" section tells CircleCI the order in which
         # jobs must be run.
@@ -23,8 +22,6 @@ workflows:
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
 jobs:
-  # This job compiles Sass and then saves (persists) the directory
-  # containing the compiled css for reuse in the pantheon/push job.
   installing_ruby:
     docker:
       - image: circleci/ruby:2.4.6
