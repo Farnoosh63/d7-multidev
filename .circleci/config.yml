@@ -15,7 +15,7 @@ workflows:
         # not be run inside the orb-defined steps.
         checkout: false
         # Commands to run before the orb-defined steps.
-        post-steps:
+        pre-steps:
           - checkout
           - attach_workspace:
               at: .
@@ -28,6 +28,12 @@ workflows:
                         cd urban_cmis_core
                         git fetch --all
                         git pull origin master
+        post-steps:
+          - save_cache:
+            key: pantheon-repo-{{ .Branch }}
+            paths:
+              - $PANTHEON_REPO_DIR
+          - run: terminus drush "$TERMINUS_SITE." . $PANTHEON_REPO_DIR fra -y
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
