@@ -32,8 +32,7 @@ workflows:
           - save_cache:
               key: pantheon-repo-{{ .Branch }}
               paths:
-                - $PANTHEON_REPO_DIR
-          - run: terminus drush "$TERMINUS_SITE." . $PANTHEON_REPO_DIR fra -y
+          - run: terminus drush "$TERMINUS_SITE." . pr-3 fra -y
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
