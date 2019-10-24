@@ -46,7 +46,7 @@ jobs:
         command: cd web/sites/all/themes/urban && npm install
   installing_repo:
     steps:
-    -checkout
+    - checkout
     - run:
         name: install third party repository
         command: |
