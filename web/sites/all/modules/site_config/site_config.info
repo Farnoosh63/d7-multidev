@@ -1,0 +1,5 @@
+name = site-config
+core = 7.x
+package = Features
+dependencies[] = features
+features[features_api][] = api:2
