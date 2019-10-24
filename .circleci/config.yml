@@ -32,8 +32,10 @@ workflows:
           - run:
               name: Revertung features
               command: |
-                        if [[ ! -z $CIRCLE_PULL_REQUEST ]] ; then terminus drush "$TERMINUS_SITE." pr-${CIRCLE_PULL_REQUEST##*/} fra -y ; fi
-                        terminus drush "$TERMINUS_SITE.dev" fra -y
+                        echo $DEFAULT_ENV
+                        echo $TERMINUS_ENV
+                        if [[ ! -z $CIRCLE_PULL_REQUEST ]] ; then terminus drush $TERMINUS_SITE.pr-${CIRCLE_PULL_REQUEST##*/} fra -y ; fi
+                        terminus drush $TERMINUS_SITE.dev fra -y
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
