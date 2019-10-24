@@ -1,8 +1,64 @@
 version: 2.1
 workflows:
   version: 2
-  just_push:
-      jobs:
-      - pantheon/push
+  build_and_push:
+    jobs:
+    - installing_ruby
+    - installing_node
+    - pantheon/push:
+        # This "requires" section tells CircleCI the order in which
+        # jobs must be run.
+        requires:
+          - installing_ruby
+          - installing_node
+        # Because the checkout command is called from pre-steps, it should
+        # not be run inside the orb-defined steps.
+        checkout: false
+        # Commands to run before the orb-defined steps.
+        pre-steps:
+          - checkout
+          - attach_workspace:
+              at: .
+          - run:
+              name: install third party repository
+              command: |
+                        cd web/sites/all/modules
+                        rm -rf urban_cmis_core
+                        git clone git@github.com:UI-Research/urban_cmis_core.git
+                        cd urban_cmis_core
+                        git fetch --all
+                        git pull origin master
+        # post-steps:
+        #   - run:
+        #       name: Authenticate with Pantheon's CLI using a machine token
+        #       command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+          # - run:
+          #     name: Reverting features
+          #     command: |
+          #               echo $DEFAULT_ENV
+          #               echo $TERMINUS_ENV
+          #               terminus -n drush $TERMINUS_SITE.$TERMINUS_ENV fra --yes
+
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
+jobs:
+  installing_ruby:
+    docker:
+      - image: circleci/ruby:2.4.6
+    steps:
+    - checkout
+    - run:
+        name: Installing bundler 1.17.3 and gem dependencies (defined in Gemfile)
+        command: |
+                  cd web/sites/all/themes/urban
+                  gem install bundler --version '<= 1.17.3'
+                  bundle install
+  installing_node:
+    docker:
+      - image: node:6.10
+    steps:
+    - checkout
+    - run:
+        name: install npm dependencies in Urban theme
+        command: cd web/sites/all/themes/urban && npm install
+
