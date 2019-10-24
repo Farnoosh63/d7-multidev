@@ -93,6 +93,13 @@ function site_config_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'site_frontpage';
+  $strongarm->value = 'node';
+  $export['site_frontpage'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'site_mail';
   $strongarm->value = 'fjohnson@urban.org';
   $export['site_mail'] = $strongarm;
@@ -103,6 +110,13 @@ function site_config_strongarm() {
   $strongarm->name = 'site_name';
   $strongarm->value = 'D7-ci-multidev';
   $export['site_name'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_slogan';
+  $strongarm->value = 'This is the multidev-4 branch';
+  $export['site_slogan'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
