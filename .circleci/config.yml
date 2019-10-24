@@ -3,6 +3,8 @@ workflows:
   version: 2
   build_and_push:
     jobs:
+    - installing_ruby
+    - installing_node
     - pantheon/push:
         # This "requires" section tells CircleCI the order in which
         # jobs must be run.
