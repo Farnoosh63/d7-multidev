@@ -28,16 +28,16 @@ workflows:
                         cd urban_cmis_core
                         git fetch --all
                         git pull origin master
-        post-steps:
-          - run:
-              name: Authenticate with Pantheon's CLI using a machine token
-              command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
-          - run:
-              name: Reverting features
-              command: |
-                        echo $DEFAULT_ENV
-                        echo $TERMINUS_ENV
-                        terminus -n drush $TERMINUS_SITE.$TERMINUS_ENV fra --yes
+        # post-steps:
+        #   - run:
+        #       name: Authenticate with Pantheon's CLI using a machine token
+        #       command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+          # - run:
+          #     name: Reverting features
+          #     command: |
+          #               echo $DEFAULT_ENV
+          #               echo $TERMINUS_ENV
+          #               terminus -n drush $TERMINUS_SITE.$TERMINUS_ENV fra --yes
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
