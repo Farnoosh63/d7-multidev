@@ -2,5 +2,7 @@
 
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the site-config feature.
  */
+
+include_once 'site_config.features.inc';
