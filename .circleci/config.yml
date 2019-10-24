@@ -29,10 +29,7 @@ workflows:
                         git fetch --all
                         git pull origin master
         post-steps:
-          - save_cache:
-              key: pantheon-repo-{{ .Branch }}
-              paths:
-          - run: terminus drush "$TERMINUS_SITE." . pr-3 fra -y
+          - run: terminus drush "$TERMINUS_SITE." ."$PR_NUMBER" fra -y
 
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
