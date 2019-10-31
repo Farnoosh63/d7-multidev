@@ -3,22 +3,20 @@
 api_version: 1
 web_docroot: true
 workflows:
-  deploy_product:
-
   sync_code:
     after:
       - type: webphp
-        description: Import configuration from .yml files
-        script: private/scripts/sync_code/drush_config_import.php
+        description: Reverting Features
+        script: private/scripts/sync_code/drush_feature_revert.php
 
   deploy:
     after:
       - type: webphp
-        description: Import configuration from .yml files
-        script: private/scripts/sync_code/drush_config_import.php
+        description: Reverting Features
+        script: private/scripts/sync_code/drush_feature_revert.php
 
   clone_database:
     after:
       - type: webphp
-        description: Import configuration from .yml files
-        script: private/scripts/sync_code/drush_config_import.php
+        description: Reverting Features
+        script: private/scripts/sync_code/drush_feature_revert.php
