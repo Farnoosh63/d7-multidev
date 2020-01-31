@@ -4,7 +4,9 @@ core = 7.x
 package = 'Custom Migration'
 
 dependencies[] = migrate
-files[] = includes/base.inc
 
 ; Base classes
-files[] = book.inc
+files[] = includes/base.inc
+
+; book implementations
+files[] = includes/book.inc

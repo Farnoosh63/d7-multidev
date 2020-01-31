@@ -11,7 +11,7 @@
     }
 
     // connection to the source database
-  public function getConnection($connection = 'pantheon') {
+  public function getConnection($connection = 'drupal_7') {
     return Database::getConnection('default', $connection);
   }
 
