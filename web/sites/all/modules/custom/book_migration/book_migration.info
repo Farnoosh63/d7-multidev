@@ -1,0 +1,10 @@
+name = book_migration
+description = Custom migration for briefing book nodes.
+core = 7.x
+package = 'Custom Migration'
+
+dependencies[] = migrate
+files[] = includes/base.inc
+
+; Base classes
+files[] = book.inc
