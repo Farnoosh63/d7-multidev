@@ -44,3 +44,6 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+web/sites/all/themes/urban/node_modules
+web/sites/default/files
