@@ -668,3 +668,9 @@ $conf['file_scan_ignore_directories'] = array(
   'node_modules',
   'bower_components',
 );
+
+# When on Pantheon, connect to a D7 database for book migration.
+$migrate_settings = __DIR__ . "/settings.migrate-on-pantheon.php";
+if (file_exists($migrate_settings) && isset($_ENV['PANTHEON_ENVIRONMENT'])) {
+  include $migrate_settings;
+}
