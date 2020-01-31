@@ -50,7 +50,7 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_slogan';
-  $strongarm->value = 'multidev 5';
+  $strongarm->value = 'This is the multidev-4 branch!';
   $export['site_slogan'] = $strongarm;
 
   return $export;

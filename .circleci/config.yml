@@ -1,8 +1,54 @@
 version: 2.1
 workflows:
   version: 2
-  just_push:
-      jobs:
-      - pantheon/push
+  compile_sass_and_push:
+    jobs:
+    - npmbuild_and_persist
+    - pantheon/push:
+        # This "requires" section tells CircleCI the order in which
+        # jobs must be run.
+        requires:
+          - npmbuild_and_persist
+        # Because the checkout command is called from pre-steps, it should
+        # not be run inside the orb-defined steps.
+        checkout: false
+        # Commands to run before the orb-defined steps.
+        pre-steps:
+          # Perform a git checkout of the code from GitHub so that
+          # custom commands (the rm below) can alter the code before it is
+          # pushed to Pantheon.
+          - checkout
+          - attach_workspace:
+              at: .
+
 orbs:
   pantheon: pantheon-systems/pantheon@0.1.0
+jobs:
+  npmbuild_and_persist:
+    docker:
+      - image: circleci/ruby:2.4-node
+    steps:
+    - checkout
+    - run:
+        name: Installing bundler and gem dependencies (defined in Gemfile)
+        # command: cd web/sites/all/themes/urban && gem install bundler && bundle install
+        command: |
+                  cd web/sites/all/themes/urban
+                  gem install bundler
+                  bundle install
+    - run:
+        name: install npm dependencies in Urban theme
+        command: cd web/sites/all/themes/urban && npm install
+    - run:
+        name: install third party repository
+        command: |
+                  cd web/sites/all/modules
+                  rm -rf urban_cmis_core
+                  git clone git@github.com:UI-Research/urban_cmis_core.git
+                  cd urban_cmis_core
+                  git fetch --all
+                  git pull origin master
+    - persist_to_workspace:
+        root: .
+        paths:
+        - web/sites/all/themes/urban
