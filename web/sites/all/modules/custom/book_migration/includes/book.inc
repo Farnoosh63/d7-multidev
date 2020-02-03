@@ -22,7 +22,7 @@ class TitleBookMigration extends BookMigration {
       ->condition('type', 'book')
       ->isNotNull('n.nid');
 
-    $this->source = new MigrateSourceSQL($query);
+    $this->source = new MigrateSourceSQL($query, array(), NULL, array('map_joinable' => FALSE));
 
     // destination
     $this->destination = new MigrateDestinationNode('book');
