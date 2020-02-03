@@ -8,7 +8,7 @@ function book_migration_migrate_api() {
     'api' => 2,
     'groups' => array(
       'BriefingBookMigration' => array(
-        'title' => t('Id of Book nodes'), // shows on /admin/content/migrate
+        'title' => t('Briefing Book nodes'), // shows on /admin/content/migrate
       )
     ),
     // BriefingBookNodes is the name we use for drush mreg command

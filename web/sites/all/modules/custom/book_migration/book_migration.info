@@ -7,6 +7,7 @@ dependencies[] = migrate
 
 ; Base classes
 files[] = includes/base.inc
+files[] = book_migration_d2d.migrate.inc
 
 ; book implementations
 files[] = includes/book.inc
