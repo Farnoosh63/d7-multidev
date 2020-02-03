@@ -28,6 +28,13 @@ function site_config_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'array_filter';
+  $strongarm->value = TRUE;
+  $export['array_filter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'block_cache';
   $strongarm->value = 1;
   $export['block_cache'] = $strongarm;
@@ -136,14 +143,14 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1580762245;
+  $strongarm->value = 1580764728;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'css_js_query_string';
-  $strongarm->value = 'q558hh';
+  $strongarm->value = 'q55aca';
   $export['css_js_query_string'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -159,6 +166,18 @@ function site_config_strongarm() {
   $strongarm->name = 'date_default_timezone';
   $strongarm->value = 'America/New_York';
   $export['date_default_timezone'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'default_field_group';
+  $strongarm->value = array(
+    'group_book_main|node|book|form' => FALSE,
+    'group_bp_info|node|book|form' => FALSE,
+    'group_bp_content|node|book|form' => FALSE,
+    'group_bp_downloads|node|book|form' => FALSE,
+  );
+  $export['default_field_group'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -206,6 +225,10 @@ function site_config_strongarm() {
     'user' => array(
       0 => 'users',
       1 => 'uid',
+    ),
+    'wysiwyg_profile' => array(
+      0 => 'wysiwyg',
+      1 => 'format',
     ),
   );
   $export['entityreference:base-tables'] = $strongarm;
@@ -271,6 +294,13 @@ function site_config_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'filter_fallback_format';
+  $strongarm->value = 'plain_text';
+  $export['filter_fallback_format'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'hs_config_taxonomy-field_topics';
   $strongarm->value = array(
     'save_lineage' => '1',
@@ -332,6 +362,213 @@ function site_config_strongarm() {
   $strongarm->name = 'install_profile';
   $strongarm->value = 'pantheon';
   $export['install_profile'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_backgroundcolor';
+  $strongarm->value = '#000000';
+  $export['media_backgroundcolor'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_dialogclass';
+  $strongarm->value = 'media-wrapper';
+  $export['media_dialogclass'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_draggable';
+  $strongarm->value = '0';
+  $export['media_draggable'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_height';
+  $strongarm->value = '280';
+  $export['media_height'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_icon_base_directory';
+  $strongarm->value = 'public://media-icons';
+  $export['media_icon_base_directory'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_minwidth';
+  $strongarm->value = '500';
+  $export['media_minwidth'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_modal';
+  $strongarm->value = '1';
+  $export['media_modal'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_opacity';
+  $strongarm->value = '0.4';
+  $export['media_opacity'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_position';
+  $strongarm->value = 'center';
+  $export['media_position'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_resizable';
+  $strongarm->value = '0';
+  $export['media_resizable'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_width';
+  $strongarm->value = '670';
+  $export['media_width'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_alignment';
+  $strongarm->value = 0;
+  $export['media_wysiwyg_alignment'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_default_render';
+  $strongarm->value = 'file_entity';
+  $export['media_wysiwyg_default_render'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_external_link';
+  $strongarm->value = 0;
+  $export['media_wysiwyg_external_link'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_remove_media_class';
+  $strongarm->value = 0;
+  $export['media_wysiwyg_remove_media_class'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_use_link_text_for_filename';
+  $strongarm->value = 1;
+  $export['media_wysiwyg_use_link_text_for_filename'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_wysiwyg_allowed_types';
+  $strongarm->value = array(
+    0 => 'image',
+    1 => 'video',
+    2 => 'audio',
+    3 => 'document',
+  );
+  $export['media_wysiwyg_wysiwyg_allowed_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_wysiwyg_override_field_types';
+  $strongarm->value = array(
+    0 => 'text_long',
+    1 => 'text',
+  );
+  $export['media_wysiwyg_wysiwyg_override_field_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_wysiwyg_override_multivalue';
+  $strongarm->value = 0;
+  $export['media_wysiwyg_wysiwyg_override_multivalue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_wysiwyg_wysiwyg_upload_directory';
+  $strongarm->value = '';
+  $export['media_wysiwyg_wysiwyg_upload_directory'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'media_zindex';
+  $strongarm->value = '10000';
+  $export['media_zindex'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_expanded';
+  $strongarm->value = array();
+  $export['menu_expanded'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_masks';
+  $strongarm->value = array(
+    0 => 501,
+    1 => 493,
+    2 => 250,
+    3 => 247,
+    4 => 246,
+    5 => 245,
+    6 => 125,
+    7 => 123,
+    8 => 122,
+    9 => 121,
+    10 => 117,
+    11 => 63,
+    12 => 62,
+    13 => 61,
+    14 => 60,
+    15 => 59,
+    16 => 58,
+    17 => 56,
+    18 => 44,
+    19 => 31,
+    20 => 30,
+    21 => 29,
+    22 => 28,
+    23 => 24,
+    24 => 21,
+    25 => 15,
+    26 => 14,
+    27 => 13,
+    28 => 12,
+    29 => 11,
+    30 => 10,
+    31 => 7,
+    32 => 6,
+    33 => 5,
+    34 => 3,
+    35 => 2,
+    36 => 1,
+  );
+  $export['menu_masks'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -528,7 +765,7 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'update_last_check';
-  $strongarm->value = 1580762257;
+  $strongarm->value = 1580764730;
   $export['update_last_check'] = $strongarm;
 
   $strongarm = new stdClass();
