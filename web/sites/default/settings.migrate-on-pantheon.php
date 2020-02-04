@@ -26,7 +26,6 @@ if (!empty($secrets['migrate_source_db__url'])) {
       'port' => $parsed_url['port'],
       'driver' => 'mysql',
       'prefix' => '',
-      'collation' => 'utf8mb4_general_ci',
     );
   }
 }
