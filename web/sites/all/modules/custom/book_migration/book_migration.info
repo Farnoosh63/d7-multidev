@@ -4,10 +4,10 @@ core = 7.x
 package = 'Custom Migration'
 
 dependencies[] = migrate
+dependencies[] = migrate_d2d
 
 ; Base classes
-files[] = includes/base.inc
-files[] = book_migration_d2d.migrate.inc
+files[] = book_migration.migrate.inc
 
 ; book implementations
-files[] = includes/book.inc
+files[] = includes/book_node.inc
