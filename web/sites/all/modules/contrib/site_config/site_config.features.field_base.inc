@@ -176,12 +176,15 @@ function site_config_field_default_field_bases() {
     'settings' => array(
       'handler' => 'base',
       'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
         'sort' => array(
           'type' => 'none',
         ),
-        'target_bundles' => array(
-          'topic' => 'topic',
-        ),
+        'target_bundles' => array(),
       ),
       'target_type' => 'taxonomy_term',
     ),
@@ -213,7 +216,7 @@ function site_config_field_default_field_bases() {
       'entity_translation_sync' => array(
         0 => 'id',
       ),
-      'hide_blank_items' => TRUE,
+      'hide_blank_items' => 1,
     ),
     'translatable' => 0,
     'type' => 'multifield',

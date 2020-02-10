@@ -24,9 +24,9 @@ function site_config_field_group_info() {
     'label' => 'Main',
     'weight' => '0',
     'children' => array(
-      0 => 'group_bp_info',
-      1 => 'group_bp_content',
-      2 => 'group_bp_downloads',
+      0 => 'group_bp_content',
+      1 => 'group_bp_downloads',
+      2 => 'group_bp_info',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
