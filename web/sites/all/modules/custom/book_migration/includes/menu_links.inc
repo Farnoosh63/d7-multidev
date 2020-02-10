@@ -1,0 +1,138 @@
+<?php
+  /**
+   * @file
+   * Class for menu link migrations: from {menu_links} into {menu_links}.
+   * Dependent on this patch for Migrate:
+   * https://www.drupal.org/project/migrate/issues/763880#comment-11034401
+   */
+
+  class BookMenuMigration extends DrupalMenuLinksMigration {
+    /**
+     * @param array $arguments
+     *     $arguments['menu_migration'] should be defined -- menu links are normally
+     *        dependent on menus.
+     */
+    public function __construct(array $arguments) {
+      parent::__construct($arguments);
+
+      // Most mappings are straightforward
+      $this->addSimpleMappings(array('router_path', 'link_title',
+        'module', 'hidden', 'external', 'has_children',
+        'expanded', 'weight', 'depth', 'customized', 'p1', 'p2', 'p3', 'p4',
+        'p5', 'p6', 'p7', 'p8', 'p9', 'updated'));
+
+      /*    // If menus have been migrated, menu_name is taken from menu_migration.
+          // Otherwise, we can assume we are only adding to existing menus.
+          // @todo: Would anyone ever migrate menu_links but not menu, or can we make it
+          //   a forced dependency?
+          if (!empty($arguments['menu_migration'])) {
+            $menu_migration = $arguments['menu_migration'];
+            $this->addFieldMapping('menu_name', 'menu_name')
+                 ->sourceMigration($menu_migration);
+          }
+          else {
+            $this->addFieldMapping('menu_name', 'menu_name');
+          }
+       */
+      $this->addFieldMapping('menu_name', 'menu_name');
+
+      // plid is taken from this migration. If the parent hasn't yet been migrated,
+      // we need to create a stub.
+      $this->addFieldMapping('plid', 'plid')
+        ->sourceMigration($this->getMachineName());
+
+      // @todo: What do we do if pathing changes? Can/Should we make this dependent on
+      //   an implementation of MigratePathEntityHandler, if it exists?
+      // Most likely this will involve a callback.
+      $this->addFieldMapping('link_path', 'link_path');
+
+      // Ran into trouble with options, so I'm leaving it out for now
+      $this->addUnmigratedSources(array('options'));
+      $this->addUnmigratedDestinations(array('options'));
+    }
+
+    /**
+     * Query for the basic menu_links data.
+     *
+     * @return QueryConditionInterface
+     */
+    protected function query() {
+      $query = Database::getConnection('default', $this->sourceConnection)
+        ->select('menu_links', 'm')
+        ->fields('m');
+      return $query;
+    }
+
+    /**
+     * Review a data row after fetch, returning FALSE to skip it.
+     *
+     * @param $row
+     */
+    public function prepareRow($row) {
+      if (parent::prepareRow($row) === FALSE) {
+        return FALSE;
+      }
+
+      if (!$this->isValidMenuName($row->menu_name)) {
+        return FALSE;
+      }
+
+      if ($row->menu_name == 'primary-links') {
+        $row->menu_name = 'main-menu';
+      }
+
+      /*
+       * Fun with link_path!
+       *
+       * check for nids
+       *   if pattern 'node/nid', replace nid with handleSourceMigration($node_migrations, $nid)
+       * check for tids
+       *   if pattern 'term/tid', replace tid with handleSourceMigration($term_migrations, $tid)
+       * check for potential alias (after basepath, I believe)
+       *   if (handleSourceMigration($path_migration, $potentialalias), replace potentialalias with result
+       */
+
+      $matches = array();
+      $value = '';
+
+      // NIDs first
+      if (!empty($this->node_migrations)) {
+        // Grabs numbers preceded by 'node/', followed by end of string or '/'
+        // eg: 'node/63' -> '63', 'node/17/edit' -> '17', 'node/53ea' -> NULL
+        //
+        $regex_nid = "/(?<=node\/)[\d]+(?=$|\/)/";
+
+        if (preg_match($regex_nid, $row->link_path, $matches)) {
+          if ($value = $this->handleSourceMigration($this->node_migrations, $matches[0])) {
+            $new_path = preg_replace('/' . $matches[0] . '/', $value, $row->link_path);
+            if ($new_path) {
+              $row->link_path = $new_path;
+            }
+          }
+        }
+      }
+    }
+
+    /**
+     * Migrate menu link language, if set.
+     */
+    public function prepare($menu_link, $row) {
+      $options = unserialize($row->options);
+      if (isset($options['langcode']) && module_exists('i18n_menu')) {
+        $menu_link->language = $options['langcode'];
+      }
+    }
+
+    /**
+     * Return whether the migration should import a menu item from the named menu.
+     *
+     * @return bool
+     */
+    protected function isValidMenuName($name) {
+      return (
+        $name == 'primary-links' ||
+        $name == 'secondary-links' ||
+        substr($name, 0, 5) == 'menu-'
+      );
+    }
+  }

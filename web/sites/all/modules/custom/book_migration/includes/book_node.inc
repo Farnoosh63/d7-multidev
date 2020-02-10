@@ -40,81 +40,8 @@
       $this->addFieldMapping('field_q_a:field_question', 'field_q_a:field_question_value');
       $this->addFieldMapping('field_q_a:field_answer', 'field_q_a');
 
-
-      // Book hierarchiy
-//      $this->addFieldMapping('link_path', 'link_path');
-//      $this->addFieldMapping('weight', 'weight');
-
-
     }
 
-      /**
-       * Overrides parent::query to add more data to the source, in our case,
-       * book hierarchy stuff.
-       */
-      public function query() {
-        $query = parent::query();
-        // Add in book parent child relationships.
-        $query->leftJoin('book', 'b', 'n.nid = b.nid');
-        $query->addField('b', 'bid');
-        $query->addField('b', 'mlid');
-        $query->leftJoin('menu_links', 'ml', 'b.mlid = ml.mlid');
-        $query->condition('module', 'book');
-        $query->addField('ml', 'weight');
-        $query->addField('ml', 'plid');
-        $query->addField('ml', 'link_path');
-        $query->addField('ml', 'depth');
-        $query->addField('ml', 'p1');
-        $query->addField('ml', 'p2');
-        $query->addField('ml', 'p3');
-        $query->addField('ml', 'p4');
-        $query->addField('ml', 'has_children');
-        $query->addField('ml', 'module');
-        $query->addField('ml', 'menu_name');
-        // Sort by depth so there is always a parent
-        $query->orderBy('ml.depth');
-
-        return $query;
-      }
-
-
-      /**
-       * Acts right after a book node has been saved. Map the book hierarchy.
-       *
-       * @param object $entity
-       *   A node object for the newly migrated book.
-       * @param stdClass $row
-       *   An object representing data from the source row.
-       */
-      public function complete($entity, stdClass $row) {
-
-//        $node = node_load($entity->nid);
-        // We cannot set the nid from $row to nid to $row
-        // since the nid in source is different than destination.
-        // The book id is the parent id.
-        // If this is a top-level book, don't set a parent.
-        $bid = $row->nid == $row->bid ? $entity->nid : $this->lookupMigratedBook($row->bid);
-        $entity->book['bid'] = $bid;
-        $entity->book['weight'] = $row->weight;
-        $entity->book['depth'] = $row->depth;
-        $entity->book['has_children'] = $row->has_children;
-
-        _book_update_outline($entity);
-
-        node_save($entity);
-
-      }
-
-      /**
-       * Returns a mapping for a migrated book.
-       *
-       * @param int $source_book_nid
-       *   Nid of book in source database to lookup.
-       */
-      protected function lookupMigratedBook($source_book_nid) {
-        $dest_book_nid = parent::handleSourceMigration('BriefingBookNodes', $source_book_nid);
-        return $dest_book_nid;
-      }
 
     /**
      * Implementation of Migration::prepareRow().
@@ -127,15 +54,13 @@
         return FALSE;
       }
 
+      // load html from body value
+//      $doc = new DOMDocument();
+//      $doc->loadHTML($row->body[0]);
+//      $body_html = $doc->saveHTML();
+//      $inline_img = $body_html->find("fid");
+//      drush_print_r($doc->saveHTML());
     }
-
-    public function prepare($entity, stdClass $row) {
-
-      $entity->menu['depth'] = $row->depth;
-      $entity->book['depth'] = $row->depth;
-
-    }
-
 
   }
 
@@ -158,4 +83,3 @@
       }
 
   }
-
