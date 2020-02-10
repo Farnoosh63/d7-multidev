@@ -226,6 +226,40 @@ function site_config_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'multifield-field_further_reading-field_source'.
+  $field_instances['multifield-field_further_reading-field_source'] = array(
+    'bundle' => 'field_further_reading',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'multifield',
+    'field_name' => 'field_source',
+    'label' => 'Source',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'multifield-field_q_a-field_answer'.
   $field_instances['multifield-field_q_a-field_answer'] = array(
     'bundle' => 'field_q_a',
@@ -246,7 +280,7 @@ function site_config_field_default_field_instances() {
     'label' => 'Answer',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -280,7 +314,7 @@ function site_config_field_default_field_instances() {
     'label' => 'Question',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -472,6 +506,140 @@ function site_config_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-book-field_further_reading'.
+  $field_instances['node-book-field_further_reading'] = array(
+    'bundle' => 'book',
+    'default_value' => array(
+      0 => array(
+        'field_source' => array(
+          'und' => array(
+            0 => array(
+              'value' => '&nbsp;',
+              'format' => 'full_html',
+            ),
+          ),
+        ),
+        'id' => NULL,
+        'actions' => array(
+          'remove_button' => 'Remove',
+        ),
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'multifield',
+        'settings' => array(
+          'view_mode' => 'default',
+        ),
+        'type' => 'multifield_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_further_reading',
+    'label' => 'Further Reading',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'multifield',
+      'settings' => array(),
+      'type' => 'multifield_default',
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-book-field_highlights'.
+  $field_instances['node-book-field_highlights'] = array(
+    'bundle' => 'book',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_highlights',
+    'label' => 'Highlights',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-book-field_long_references'.
+  $field_instances['node-book-field_long_references'] = array(
+    'bundle' => 'book',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_long_references',
+    'label' => 'References/Notes	',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 10,
     ),
   );
 
@@ -745,10 +913,14 @@ function site_config_field_default_field_instances() {
   t('Book PDF');
   t('Comment');
   t('Enter a comma-separated list of words to describe your content.');
+  t('Further Reading');
+  t('Highlights');
   t('Image');
   t('Primary Topic');
   t('Q/A');
   t('Question');
+  t('References/Notes	');
+  t('Source');
   t('Subtitle');
   t('Tags');
   t('Title Text');

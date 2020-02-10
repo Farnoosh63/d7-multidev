@@ -13,6 +13,13 @@ function site_config_multifield_default_multifield() {
 
   $multifield = new stdClass();
   $multifield->disabled = FALSE; /* Edit this to true to make a default multifield disabled initially */
+  $multifield->machine_name = 'field_further_reading';
+  $multifield->label = 'field_further_reading';
+  $multifield->description = '';
+  $export['field_further_reading'] = $multifield;
+
+  $multifield = new stdClass();
+  $multifield->disabled = FALSE; /* Edit this to true to make a default multifield disabled initially */
   $multifield->machine_name = 'field_q_a';
   $multifield->label = 'field_q_a';
   $multifield->description = '';
