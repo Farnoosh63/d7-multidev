@@ -15,6 +15,7 @@ files[] = includes/source.inc
 files[] = includes/team.inc
 files[] = migrate.mail.inc
 files[] = plugins/destinations/block_custom.inc
+files[] = plugins/destinations/book.inc
 files[] = plugins/destinations/entity.inc
 files[] = plugins/destinations/term.inc
 files[] = plugins/destinations/user.inc
