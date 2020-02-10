@@ -37,6 +37,15 @@ function book_migration_migrate_api() {
       'destination_type' => 'book',
       'source_dir' => 'https://live-d7-ci-multidev.pantheonsite.io/sites/default/files/',
     ),
+    'BookMigrateOutline' => array(
+      'class_name' => 'BookLinksMigration',
+      'description' => t("Migration of book outlines"),
+      'source_type' => 'book',
+      'destination_type' => 'book',
+      'node_migrations' => array(
+        'BriefingBookNodes',
+      ),
+    ),
   );
 
   foreach ($node_arguments as $migration_name => $arguments) {

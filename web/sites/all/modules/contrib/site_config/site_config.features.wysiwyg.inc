@@ -99,10 +99,10 @@ function site_config_wysiwyg_default_profiles() {
       'pasteFromWordRemoveStyles' => 1,
     ),
     'preferences' => array(
+      'add_to_summaries' => FALSE,
       'default' => 1,
-      'user_choose' => 1,
       'show_toggle' => 1,
-      'add_to_summaries' => 0,
+      'user_choose' => 1,
       'version' => '4.5.4.d4677a3',
     ),
     'name' => 'formatfull_html',

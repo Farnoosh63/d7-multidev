@@ -34,8 +34,10 @@ abstract class DrupalMenuLinksMigration extends DrupalMigration {
     }
     if (!empty($arguments['node_migrations'])) {
       $this->node_migrations = $arguments['node_migrations'];
-      foreach ($this->node_migrations as $node_migration) {
-        $this->dependencies[] = $node_migration;
+      if (is_array($this->node_migrations)) {
+        foreach ($this->node_migrations as $node_migration) {
+          $this->dependencies[] = $node_migration;
+        }
       }
     }
     if (!empty($arguments['term_migrations'])) {
@@ -55,7 +57,7 @@ abstract class DrupalMenuLinksMigration extends DrupalMigration {
     $this->source = new MigrateSourceSQL($this->query(), $this->sourceFields,
       NULL, $this->sourceOptions);
 
-    $this->destination = new MigrateDestinationMenuLinks();
+    $this->destination = $this->createDestination();
 
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -66,7 +68,8 @@ abstract class DrupalMenuLinksMigration extends DrupalMigration {
           'description' => 'ID of destination link',
         ),
       ),
-      MigrateDestinationMenuLinks::getKeySchema()
+      $this->destination->getKeySchema(),
+      $this->mapConnection
     );
   }
 
@@ -98,4 +101,15 @@ abstract class DrupalMenuLinksMigration extends DrupalMigration {
       return FALSE;
     }
   }
+
+  /**
+   * Create the migrate destination.
+   *
+   * @return MigrateDestination
+   *   A MigrateDestination object; it must have a getSchemaKey() function.
+   */
+  protected function createDestination() {
+    return new MigrateDestinationMenuLinks();
+  }
+
 }

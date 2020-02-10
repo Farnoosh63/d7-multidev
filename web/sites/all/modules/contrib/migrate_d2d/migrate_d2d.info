@@ -18,6 +18,7 @@ files[] = node.inc
 files[] = role.inc
 files[] = taxonomy.inc
 files[] = user.inc
+files[] = variable.inc
 
 ; D5 implementations
 files[] = d5/d5.inc
@@ -32,6 +33,7 @@ files[] = d5/user.inc
 ; D6 implementations
 files[] = d6/d6.inc
 files[] = d6/block_custom.inc
+files[] = d6/book.inc
 files[] = d6/comment.inc
 files[] = d6/entity.inc
 files[] = d6/file.inc
@@ -54,9 +56,9 @@ files[] = d7/role.inc
 files[] = d7/taxonomy.inc
 files[] = d7/user.inc
 
-; Information added by Drupal.org packaging script on 2015-02-09
-version = "7.x-2.1"
+; Information added by Drupal.org packaging script on 2015-11-28
+version = "7.x-2.1+8-dev"
 core = "7.x"
 project = "migrate_d2d"
-datestamp = "1423523588"
+datestamp = "1448748841"
 
