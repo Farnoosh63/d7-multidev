@@ -36,10 +36,9 @@
       $this->addFieldMapping('field_pdf:description', 'field_pdf:description')
         ->defaultValue('');
 
-      // Field Q&A TODO: field mapping wont import to destination
-      $this->addFieldMapping('field_q_a:field_question_value', 'field_q_a:field_question_value');
-      $this->addFieldMapping('field_q_a', 'field_q_a');
-      $this->addFieldMapping('field_q_a:id', 'field_q_a:id');
+      // Field Q&A
+      $this->addFieldMapping('field_q_a:field_question', 'field_q_a:field_question_value');
+      $this->addFieldMapping('field_q_a:field_answer', 'field_q_a');
 
 
       // Book hierarchiy
@@ -82,7 +81,7 @@
       /**
        * Acts right after a book node has been saved. Map the book hierarchy.
        *
-       * @param object $node
+       * @param object $entity
        *   A node object for the newly migrated book.
        * @param stdClass $row
        *   An object representing data from the source row.
