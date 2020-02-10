@@ -76,9 +76,7 @@ class DrupalMenuLinks6Migration extends DrupalMenuLinksMigration {
       return FALSE;
     }
 
-    if (!($row->menu_name == 'primary-links' ||
-        $row->menu_name == 'secondary-links' ||
-        substr($row->menu_name, 0, 5) == 'menu-')) {
+    if (!$this->isValidMenuName($row->menu_name)) {
       return FALSE;
     }
 
@@ -143,5 +141,18 @@ class DrupalMenuLinks6Migration extends DrupalMenuLinksMigration {
    */
   public function complete($menu, $row) {
     // @todo: anything needed here? Keeping complete() as a placeholder for now
+  }
+
+  /**
+   * Return whether the migration should import a menu item from the named menu.
+   *
+   * @return bool
+   */
+  protected function isValidMenuName($name) {
+    return (
+      $name == 'primary-links' ||
+      $name == 'secondary-links' ||
+      substr($name, 0, 5) == 'menu-'
+    );
   }
 }
