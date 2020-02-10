@@ -226,6 +226,110 @@ function site_config_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'multifield-field_further_reading-field_link'.
+  $field_instances['multifield-field_further_reading-field_link'] = array(
+    'bundle' => 'field_further_reading',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(
+          'custom_title' => '',
+        ),
+        'type' => 'link_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'multifield',
+    'field_name' => 'field_link',
+    'label' => 'URL',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_allowed_values' => '',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'multifield-field_further_reading-field_link_date'.
+  $field_instances['multifield-field_further_reading-field_link_date'] = array(
+    'bundle' => 'field_further_reading',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'multifield',
+    'field_name' => 'field_link_date',
+    'label' => 'Date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 1,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'no_fieldset' => 0,
+        'text_parts' => array(),
+        'year_range' => '-10:+0',
+      ),
+      'type' => 'date_popup',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'multifield-field_further_reading-field_source'.
   $field_instances['multifield-field_further_reading-field_source'] = array(
     'bundle' => 'field_further_reading',
@@ -519,6 +623,25 @@ function site_config_field_default_field_instances() {
             0 => array(
               'value' => '&nbsp;',
               'format' => 'full_html',
+            ),
+          ),
+        ),
+        'field_link' => array(
+          'und' => array(
+            0 => array(
+              'url' => '',
+            ),
+          ),
+        ),
+        'field_link_date' => array(
+          'und' => array(
+            0 => array(
+              'value' => NULL,
+              'value2' => NULL,
+              'timezone' => NULL,
+              'offset' => NULL,
+              'offset2' => NULL,
+              'rrule' => NULL,
             ),
           ),
         ),
@@ -912,6 +1035,7 @@ function site_config_field_default_field_instances() {
   t('Body');
   t('Book PDF');
   t('Comment');
+  t('Date');
   t('Enter a comma-separated list of words to describe your content.');
   t('Further Reading');
   t('Highlights');
@@ -926,6 +1050,7 @@ function site_config_field_default_field_instances() {
   t('Title Text');
   t('Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.');
   t('Topics');
+  t('URL');
   t('Upload an image to go with this article.');
 
   return $field_instances;

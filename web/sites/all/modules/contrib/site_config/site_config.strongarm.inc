@@ -143,7 +143,7 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'css_js_query_string';
-  $strongarm->value = 'q5i6pk';
+  $strongarm->value = 'q5i860';
   $export['css_js_query_string'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -152,6 +152,13 @@ function site_config_strongarm() {
   $strongarm->name = 'ctools_last_cron';
   $strongarm->value = 1581345129;
   $export['ctools_last_cron'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date_api_version';
+  $strongarm->value = '7.2';
+  $export['date_api_version'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -225,7 +232,7 @@ function site_config_strongarm() {
       'field_instance' => 'fcb97d9e44fb3f6e57dc1beb957eb0fd',
       'taxonomy' => '4b7be89caddbae459e1887f68aa0bd10',
       'user_role' => '57d23ee3deb6e9262fa3b2617586b072',
-      'variable' => '77bbf32b83808f9e28914fe193121fc2',
+      'variable' => '7c0b078bc702e031b06377ccefecd6e9',
       'node' => '72fbc1d40e03ea5819150212c7645a42',
       'filter' => '4804cf8fe90be8778a568775abc85d57',
       'hierarchical_select' => 'c2f243c54938beed594b37b60e543b85',
