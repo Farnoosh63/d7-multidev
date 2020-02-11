@@ -19,8 +19,10 @@
       $this->addFieldMapping('field_topics', 'field_topics');
       $this->addFieldMapping('field_topics:source_type')
         ->defaultValue('tid');
+      $this->addFieldMapping('field_topics:create_term')
+        ->defaultValue(FALSE);
 
-      // primary topic field reference entity
+      // Primary topic field reference entity
       $this->addFieldMapping('field_primary_topic', 'field_primary_topic');
 
       // Subtitle
@@ -36,10 +38,26 @@
       $this->addFieldMapping('field_pdf:description', 'field_pdf:description')
         ->defaultValue('');
 
-      // Field Q&A
+      // Q&A multifield
       $this->addFieldMapping('field_q_a:field_question', 'field_q_a:field_question_value');
       $this->addFieldMapping('field_q_a:field_answer', 'field_q_a');
 
+      // Further reading multifield
+      $this->addFieldMapping('field_further_reading:field_source','field_further_reading');
+      $this->addFieldMapping('field_further_reading:field_source:format','field_further_reading:field_source_format');
+
+      $this->addFieldMapping('field_further_reading:field_link','field_further_reading:field_link_url');
+      $this->addFieldMapping('field_further_reading:field_link:title','field_further_reading:field_link_title');
+      $this->addFieldMapping('field_further_reading:field_link:attributes','field_further_reading:field_link_attributes');
+      $this->addFieldMapping('field_further_reading:field_link_date','field_further_reading:field_link_date_value');
+
+      // Highlights
+      $this->addFieldMapping('field_highlights','field_highlights');
+      $this->addFieldMapping('field_highlights:format','field_highlights:format');
+
+      // References
+      $this->addFieldMapping('field_long_references','field_long_references');
+      $this->addFieldMapping('field_long_references:format','field_long_references:format');
     }
 
 

@@ -15,6 +15,10 @@ projects[multifield][patch][] = "https://www.drupal.org/files/issues/multifield-
 ; @see https://www.drupal.org/project/migrate_d2d/issues/2146961#comment-11034435
 projects[migrate_d2d][patch][] = "https://www.drupal.org/files/issues/migrate_d2d-book_migration-2146961-4-d7.patch"
 
+;Make DrupalNodeMigration::createStub() use all arguments from invocation
+; @see https://www.drupal.org/project/migrate_d2d/issues/2637350
+projects[migrate_d2d][patch][] = "https://www.drupal.org/files/issues/migrate_d2d-2637350-2.patch"
+
 ;migrate
 ;destination handler
 ; @see https://www.drupal.org/project/migrate/issues/763880#comment-11034401
