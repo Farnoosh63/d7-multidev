@@ -95,6 +95,8 @@ Migration Book Hierarchy (run after all the book nodes have been imported):
 
 `lando drush mi BookMigrateOutline`
 
+* In case of only migrating unimported items from the source or update previpusly-imported items with new data add `--update` flag to the abive commands.
+
 ### Troubleshooting
 If the migration or a class is not detected, roll back all migrations and de-register and redister back the migrations.
 to roll back each migration run:

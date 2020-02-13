@@ -41,6 +41,8 @@
       // Q&A multifield
       $this->addFieldMapping('field_q_a:field_question', 'field_q_a:field_question_value');
       $this->addFieldMapping('field_q_a:field_answer', 'field_q_a');
+      $this->addFieldMapping('field_q_a:field_answer:format', 'field_q_a:field_answer_format');
+      $this->addFieldMapping('field_q_a:field_question:format', 'field_q_a:field_question_format');
 
       // Further reading multifield
       $this->addFieldMapping('field_further_reading:field_source','field_further_reading');
@@ -72,7 +74,8 @@
         return FALSE;
       }
 
-      // Replace fid's in body
+      // Since the fid in destination is not the same as fid in source,
+      // we are going to update the fid in destination in body
       module_load_include('inc', 'media_wysiwyg', 'filter');
       $row->body = preg_replace_callback(MEDIA_WYSIWYG_TOKEN_REGEX,
         function ($matches) use ($row) {
