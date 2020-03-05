@@ -29,6 +29,13 @@ class BookLinksMigration extends BookMenuMigration {
     $this->addFieldMapping('nid', 'nid')
       ->sourceMigration($this->node_migrations);
 
+    // Updating existing menu based on destination mlid
+    // rather than importing new menu link if mlid already exists on destination
+    // We need these two lines because on briefingBookNodes system of records
+    // is destination nid.
+    $this->addFieldMapping('mlid', 'mlid');
+    $this->systemOfRecord = Migration::DESTINATION;
+
     // These field values are set by the Book module.
     $this->removeFieldMapping('menu_name');
     $this->removeFieldMapping('module');
