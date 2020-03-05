@@ -143,21 +143,21 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cron_last';
-  $strongarm->value = 1581448551;
+  $strongarm->value = 1583430467;
   $export['cron_last'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'css_js_query_string';
-  $strongarm->value = 'q5k11a';
+  $strongarm->value = 'q6qiwa';
   $export['css_js_query_string'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ctools_last_cron';
-  $strongarm->value = 1581433661;
+  $strongarm->value = 1583430472;
   $export['ctools_last_cron'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -622,7 +622,7 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'multifield_max_id';
-  $strongarm->value = '90';
+  $strongarm->value = 364;
   $export['multifield_max_id'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -866,7 +866,7 @@ function site_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'update_last_check';
-  $strongarm->value = 1581448556;
+  $strongarm->value = 1583430486;
   $export['update_last_check'] = $strongarm;
 
   $strongarm = new stdClass();

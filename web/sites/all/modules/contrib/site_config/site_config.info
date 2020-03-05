@@ -55,6 +55,7 @@ dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = token
 dependencies[] = toolbar
+dependencies[] = transliteration
 dependencies[] = update
 dependencies[] = url
 dependencies[] = views
