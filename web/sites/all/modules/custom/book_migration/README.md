@@ -85,15 +85,15 @@ To list all the migrate tools commands, run
 2- We need to migrate __BriefingBookFiles__ first and __BookMigrateOutline__ last.
 Migrating files, this may takes some time:
 
-`lando drush mi BriefingBookFiles`
+`lando drush mi BriefingBookFiles --update --feedback="100 items"`
 
 Migrating Book nodes:
 
-`lando drush mi BriefingBookNodes`
+`lando drush mi BriefingBookNodes --update --feedback="50 items"`
 
 Migration Book Hierarchy (run after all the book nodes have been imported):
 
-`lando drush mi BookMigrateOutline`
+`lando drush mi BookMigrateOutline --update --feedback="50 items"`
 
 * In case of only migrating unimported items from the source or update previpusly-imported items with new data add `--update` flag to the abive commands.
 

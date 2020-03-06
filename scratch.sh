@@ -35,12 +35,12 @@ lando drush ms
 
 # First migrate Files module
 # This may take some time
-lando drush mi BriefingBookFiles
+lando drush mi BriefingBookFiles --update
 
-lando drush mi BriefingBookNodes
+lando drush mi BriefingBookNodes --update
 
 # run after all the book nodes have been imported.
-lando drush mi BookMigrateOutline
+lando drush mi BookMigrateOutline --update
 
 
 # roll back migration

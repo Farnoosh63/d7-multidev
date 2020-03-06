@@ -11,6 +11,6 @@ files[] = book_migration.migrate.inc
 
 ; book implementations
 files[] = includes/book_node.inc
-files[] = includes/book.inc
+files[] = includes/book_menu.inc
 files[] = includes/menu_links.inc
 
